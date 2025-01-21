@@ -1,16 +1,27 @@
-// Function to add an event listener to the button
-function addingEventListener() {
-    // Step 1: Grab the input element with the ID 'button'
-    const input = document.getElementById('button');
-  
-    // Step 2: Define the callback function
-    function clickAlert() {
-      alert('I was clicked!');
+const dodger = document.getElementById("dodger");
+
+function moveDodgerLeft() {
+    const leftNumbers = dodger.style.left.replace("px", "");
+    const left = parseInt(leftNumbers, 10);
+
+    if (left > 0) { // Prevent moving out of bounds
+        dodger.style.left = `${left - 1}px`; // Move left
     }
-  
-    // Step 3: Add the event listener to the input element
-    input.addEventListener('click', clickAlert);
-  }
-  
-  // Call the function to activate the event listener
-  addingEventListener();
+}
+
+function moveDodgerRight() {
+    const leftNumbers = dodger.style.left.replace("px", "");
+    const left = parseInt(leftNumbers, 10);
+
+    if (left < 360) { // Prevent moving out of bounds
+        dodger.style.left = `${left + 1}px`; // Move right
+    }
+}
+
+document.addEventListener("keydown", function (e) {
+    if (e.key === "ArrowLeft") {
+        moveDodgerLeft();
+    } else if (e.key === "ArrowRight") {
+        moveDodgerRight();
+    }
+});
